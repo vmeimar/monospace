@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\VesselRepositoryInterface;
+use App\Services\Vessel\VesselDailyAvgProfit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -45,5 +46,10 @@ class VesselController extends Controller
                 ], 200);
             }
         }
+    }
+
+    public function report($vessel_id)
+    {
+        $dailyAvgProfit = app(VesselDailyAvgProfit::class)->calculate($vessel_id);
     }
 }

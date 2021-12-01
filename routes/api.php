@@ -27,3 +27,4 @@ Route::put('/voyages/{id}', [VoyageController::class, 'update']);
 
 // ****** Vessel ****** //
 Route::post('/vessels/{id}/vessel-opex', [VesselController::class, 'create']);
+Route::get('/vessels/{id}/financial-report', [VesselController::class, 'report']);

@@ -17,8 +17,8 @@ class CreateVoyagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('vessel_id');
             $table->string('code')->unique();
-            $table->string('start');
-            $table->string('end')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end')->nullable();
             $table->string('status');
             $table->decimal('revenues', 8, 2)->nullable();
             $table->decimal('expenses', 8, 2)->nullable();
