@@ -13,6 +13,14 @@ class VoyageRepository implements VoyageRepositoryInterface
     {
         $vessel = Vessel::where('id', $data['vessel_id'])->firstOrFail();
         $vesselRepository = new VesselRepository();
+        $code = app(VoyageCodeService::class)->createVoyageCode($vessel->name, $data['start']);
+
+        if ($code === null)
+        {
+            return new Response([
+                'message'   =>  'Vessel already pending'
+            ], 400);
+        }
 
         if ( $vesselRepository->isVesselAvailable($vessel) )
         {

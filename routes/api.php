@@ -20,4 +20,6 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::post('/voyages', [VoyageController::class, 'create']);
-Route::post('/voyages/{id}', [VoyageController::class, 'update']);
+Route::put('/voyages/{id}', [VoyageController::class, 'update']);
+
+//Route::post('/vessels/{id}/vessel-opex',)
