@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Vessel extends Model
 {
     use HasFactory;
+
+    public function voyage()
+    {
+        return $this->hasOne(Voyage::class);
+    }
 }

@@ -19,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::post('/voyages', [VoyageController::class, 'voyages']);
+Route::post('/voyages', [VoyageController::class, 'create']);
+Route::post('/voyages/{id}', [VoyageController::class, 'update']);

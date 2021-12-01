@@ -2,28 +2,73 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vessel;
-use App\Repositories\VoyageRepository;
+use App\Repositories\VoyageRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class VoyageController extends Controller
 {
     /**
-     * @var VoyageRepository
+     * @var VoyageRepositoryInterface
      */
     private $voyageRepository;
 
-    public function __construct(VoyageRepository $voyageRepository)
+    public function __construct(VoyageRepositoryInterface $voyageRepository)
     {
         $this->voyageRepository = $voyageRepository;
     }
 
-    public function voyages(Request $request)
+    public function create(Request $request)
     {
         $data = $request->json()->all();
 
-        $vessel_name = Vessel::where('id', $data['vessel_id'])->firstOrFail();
+        if ( !$this->voyageRepository->voyageDataValidate($data) )
+        {
+            return new Response([
+                'message'   =>  'Given data not valid'
+            ], 400);
+        }
 
-//        $code = $this->voyageRepository->createVoyageCode();
+        $created = $this->voyageRepository->createVoyage($data);
+
+        if (!$created)
+        {
+            return new Response([
+                'message'   =>  'Something went wrong on voyage creation'
+            ], 400);
+        }
+        else
+        {
+            return new Response([
+                'message'   =>  'Created successfully'
+            ], 200);
+        }
+    }
+
+    public function update($voyage_id, Request $request)
+    {
+        $data = $request->json()->all();
+
+        if ( !$this->voyageRepository->voyageDataValidate($data) )
+        {
+            return new Response([
+                'message'   =>  'Given data not valid'
+            ], 400);
+        }
+
+        $updated = $this->voyageRepository->updateVoyage($voyage_id, $data);
+
+        if (!$updated)
+        {
+            return new Response([
+                'message'   =>  'Something went wrong on voyage update'
+            ], 400);
+        }
+        else
+        {
+            return new Response([
+                'message'   =>  'Updated successfully'
+            ], 200);
+        }
     }
 }

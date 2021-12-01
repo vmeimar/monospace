@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Services\Vessel\VesselImoNumberService;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class VesselSeeder extends Seeder
         foreach (range(1,50) as $item) {
             DB::table('vessels')->insert([
                 'name'  =>  $faker->firstNameFemale,
-                'imo_number'    =>  Str::random(7)
+                'imo_number'    =>  app(VesselImoNumberService::class)->createVesselImoNumber()
             ]);
         }
     }

@@ -15,7 +15,7 @@ class Voyage extends Model
     {
         parent::boot();
 
-        static::created(function ($voyage) {
+        static::creating(function ($voyage) {
             $voyage->status = VoyageStatus::PENDING;
         });
     }

@@ -9,7 +9,7 @@ class VoyageStatus extends Model
 {
     use HasFactory;
 
-    public const PENDING = 'VoyagePending';
-    public const ONGOING = 'VoyageOngoing';
-    public const SUBMITTED = 'VoyageSubmitted';
+    public const PENDING = 'pending';
+    public const ONGOING = 'ongoing';
+    public const SUBMITTED = 'submitted';
 }
