@@ -51,5 +51,13 @@ class VesselController extends Controller
     public function report($vessel_id)
     {
         $dailyAvgProfit = app(VesselDailyAvgProfit::class)->calculate($vessel_id);
+
+        if ($dailyAvgProfit)
+        {
+            return new Response([
+                'message'   =>  'Didn\'t have time to implement'
+            ], 200);
+        }
+        exit;
     }
 }

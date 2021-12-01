@@ -9,8 +9,8 @@ class Vessel extends Model
 {
     use HasFactory;
 
-    public function voyage()
+    public function voyages()
     {
-        return $this->hasOne(Voyage::class);
+        return $this->hasMany(Voyage::class);
     }
 }
