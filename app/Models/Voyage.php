@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Voyage extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($voyage) {
+            $voyage->status = VoyageStatus::PENDING;
+        });
+    }
+
+    public function vessel()
+    {
+        return $this->hasOne(Vessel::class);
+    }
 }
