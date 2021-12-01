@@ -28,20 +28,22 @@ class VoyageController extends Controller
                 'message'   =>  'Given data not valid'
             ], 400);
         }
-
-        $created = $this->voyageRepository->createVoyage($data);
-
-        if (!$created)
-        {
-            return new Response([
-                'message'   =>  'Something went wrong on voyage creation'
-            ], 400);
-        }
         else
         {
-            return new Response([
-                'message'   =>  'Created successfully'
-            ], 200);
+            $created = $this->voyageRepository->createVoyage($data);
+
+            if (!$created)
+            {
+                return new Response([
+                    'message'   =>  'Something went wrong on voyage creation'
+                ], 400);
+            }
+            else
+            {
+                return new Response([
+                    'message'   =>  'Voyage created successfully!'
+                ], 200);
+            }
         }
     }
 
@@ -55,20 +57,22 @@ class VoyageController extends Controller
                 'message'   =>  'Given data not valid'
             ], 400);
         }
-
-        $updated = $this->voyageRepository->updateVoyage($voyage_id, $data);
-
-        if (!$updated)
-        {
-            return new Response([
-                'message'   =>  'Something went wrong on voyage update'
-            ], 400);
-        }
         else
         {
-            return new Response([
-                'message'   =>  'Updated successfully'
-            ], 200);
+            $updated = $this->voyageRepository->updateVoyage($voyage_id, $data);
+
+            if (!$updated)
+            {
+                return new Response([
+                    'message'   =>  'Something went wrong on voyage update'
+                ], 400);
+            }
+            else
+            {
+                return new Response([
+                    'message'   =>  'Updated successfully'
+                ], 200);
+            }
         }
     }
 }

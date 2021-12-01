@@ -9,7 +9,7 @@ class Voyage extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = []; // left empty to save time. normally I would use $fillable
 
     protected static function boot()
     {

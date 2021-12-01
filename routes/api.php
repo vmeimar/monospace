@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VesselController;
 use App\Http\Controllers\VoyageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
+
+// ******* Voyage ******* //
 Route::post('/voyages', [VoyageController::class, 'create']);
 Route::put('/voyages/{id}', [VoyageController::class, 'update']);
 
-//Route::post('/vessels/{id}/vessel-opex',)
+// ****** Vessel ****** //
+Route::post('/vessels/{id}/vessel-opex', [VesselController::class, 'create']);
